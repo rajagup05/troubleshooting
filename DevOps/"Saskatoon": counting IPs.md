@@ -18,4 +18,13 @@ Find what's the IP address that has the most requests in this file (there's no t
 **correct understanding:** every HTTP request have unique IP address and is counted as 1 request. So,we have to take a count/repetition of that unique IP address and find out the IP address making most HTTP calls. 
 
 ### steps taken for this:
-1. 
+1. used `cd ~` to come to home/user directory.
+2. used `pwd` to confirm the current working directory.
+3. used `ls` and then `tail -f access.log` to see and visualize the last 10 output of this file.
+4. used `awk '{print $1}' access.log` to get only 1st column data which in this case was IPs.
+
+> 5. **Final command:** used `awk '{print $1}' access.log | sort | uniq -c | sort -r | head -1` => Here, I am selecting 1st column of `access.log` output which is IPs, then using `sort` to sort it in ascending order, then using `uniq` command to count the IPs repetition, further sorting it recursively and taking 1st line of the output of this final command using `head`.
+
+> 6. at last using command `echo "final_output_IP" > /home/admin/highestip.txt` to write the identified IP in existing file `highestip.txt`.
+
+7. also verified if solution is correct using command `sha1sum /home/admin/highestip.txt`
